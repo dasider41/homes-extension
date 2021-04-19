@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getPropertyID, getPropertyDetails } from "./Api";
 import "./App.css";
+import { ReactComponent as SearchIcon } from "./search.svg";
 
 function App() {
   const msg_no_result = "No result";
@@ -38,11 +39,6 @@ function App() {
     callAPI(address);
   };
 
-  const clearInput = (e) => {
-    setAddress("");
-    setResult(msg_no_result);
-  };
-
   const onChange = (e) => {
     const {
       target: { value },
@@ -51,7 +47,7 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <>
       <input
         type="text"
         name="address"
@@ -60,14 +56,11 @@ function App() {
         onKeyDown={onKeyDown}
         value={address}
       />
-      <button style={{ marginLeft: "5px" }} onClick={submit}>
-        Submit
+      <button onClick={submit}>
+        <SearchIcon width="16px" height="16px" />
       </button>
-      <button style={{ marginLeft: "5px" }} onClick={clearInput}>
-        Clear
-      </button>
-      <p>{result}</p>
-    </div>
+      <div className="output">{result}</div>
+    </>
   );
 }
 

@@ -91,11 +91,13 @@ function App() {
       {msg && <p>{msg}</p>}
 
       {cards.length > 0 ? (
-        cards.map((card, i) => <CardItem key={i} card={card} />)
+        cards.map((card) => <CardItem key={card.id} card={card} />)
       ) : (
         <>
           <p>No results</p>
-          <a href="http://homes.co.nz/" target="_new">Go Homes.co.nz</a>
+          <a href="http://homes.co.nz/" target="_new">
+            Go Homes.co.nz
+          </a>
         </>
       )}
     </>

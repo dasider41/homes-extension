@@ -15,8 +15,9 @@ function App() {
         code: "window.getSelection().toString();",
       },
       (selection) => {
-        setAddress(selection[0]);
-        callAPI(address);
+        const selectedText = selection[0];
+        setAddress(selectedText);
+        callAPI(selectedText);
       }
     );
   }, []);

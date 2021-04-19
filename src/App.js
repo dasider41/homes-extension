@@ -91,7 +91,7 @@ function App() {
       {msg && <p>{msg}</p>}
 
       {cards.length > 0 ? (
-        cards.map((card, i) => <CardItem card={card} />)
+        cards.map((card, i) => <CardItem key={i} card={card} />)
       ) : (
         <p>No results</p>
       )}

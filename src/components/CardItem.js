@@ -6,12 +6,16 @@ const CardItem = ({ card }) => {
 
   return (
     <div className="output">
-      <p>Low : {property_details.display_estimated_lower_value_short || "-"}</p>
-      <p>Est : {property_details.display_estimated_value_short || "-"}</p>
+      <p>{property_details.address}</p>
       <p>
-        High : {property_details.display_estimated_upper_value_short || "-"}
+        <small> Low : </small>
+        <b>{property_details.display_estimated_lower_value_short || "-"}</b>,
+        <small> Est : </small>
+        <b>{property_details.display_estimated_value_short || "-"}</b>,
+        <small> High : </small>
+        <b>{property_details.display_estimated_upper_value_short || "-"}</b>
       </p>
-      <p>Price : {card.display_price || "-"}</p>
+      <p>Price : <b>{card.display_price || "-"}</b></p>
       <a href={link} target="_new">
         More...
       </a>

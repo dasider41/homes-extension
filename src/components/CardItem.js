@@ -15,7 +15,9 @@ const CardItem = ({ card }) => {
         <small> High : </small>
         <b>{property_details.display_estimated_upper_value_short || "-"}</b>
       </p>
-      <p>Price : <b>{card.display_price || "-"}</b></p>
+      <p>
+        Price : <b>{card.display_price || "-"}</b>
+      </p>
       <a href={link} target="_new">
         More...
       </a>
@@ -23,4 +25,4 @@ const CardItem = ({ card }) => {
   );
 };
 
-export default CardItem;
+export default React.memo(CardItem);

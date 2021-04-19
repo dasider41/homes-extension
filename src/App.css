@@ -1,7 +1,7 @@
 html,
 body {
   margin: 0;
-  padding: 10px;
+  padding: 5px;
 }
 
 body {
@@ -38,6 +38,10 @@ button {
   color: #fff;
 }
 
+.title {
+  margin-bottom: 6px;
+}
+
 input {
   padding: 5px;
   -webkit-writing-mode: horizontal-tb !important;
@@ -66,4 +70,8 @@ input {
   border: 1px solid #3f97a6;
   border-radius: 1px;
   font: 400 13.3333px Arial;
+}
+
+.output p {
+  margin: 2px;
 }

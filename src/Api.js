@@ -15,20 +15,14 @@ async function getPropertyID(address) {
 }
 
 async function getPropertyDetails(property_id) {
-  const req = await axios.get(`${API_POINT}/property/${property_id}/detail`);
+  const req = await axios.get(
+    `${API_POINT}/properties?property_ids=${property_id}`
+  );
   const {
-    data: { property },
+    data: { cards },
   } = req;
 
-  const {
-    display_estimated_lower_value_short,
-    display_estimated_upper_value_short,
-    display_estimated_value_short,
-  } = property;
-
-  const output = `Low:${display_estimated_lower_value_short}, Est:${display_estimated_value_short}, High:${display_estimated_upper_value_short}`;
-
-  return output;
+  return cards;
 }
 
 export { getPropertyID, getPropertyDetails };

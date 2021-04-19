@@ -1,41 +1,53 @@
 /*global chrome*/
 import React, { useEffect, useState } from "react";
 import { getPropertyID, getPropertyDetails } from "./Api";
+import CardItem from "./components/CardItem";
 import "./App.css";
 import { ReactComponent as SearchIcon } from "./search.svg";
 
 function App() {
-  const msg_no_result = "No result";
   const [address, setAddress] = useState("");
-  const [result, setResult] = useState(msg_no_result);
+  const [msg, setMsg] = useState("");
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    chrome.tabs.executeScript(
-      {
-        code: "window.getSelection().toString();",
-      },
-      (selection) => {
-        const selectedText = selection[0];
-        setAddress(selectedText);
-        callAPI(selectedText);
-      }
-    );
+    if (chrome.tabs) {
+      chrome.tabs.executeScript(
+        {
+          code: "window.getSelection().toString();",
+        },
+        (selection) => {
+          const selectedText = selection[0];
+
+          setAddress(selectedText);
+          callAPI(selectedText);
+        }
+      );
+    }
   }, []);
 
   async function callAPI(address) {
-    setResult("Loading...");
-    const property_id = await getPropertyID(address);
-    if (!property_id) {
-      setResult("Unable to find propery id");
+    if (address.length <= 0) {
       return;
     }
-    const output = await getPropertyDetails(property_id);
-    // console.log(output);
-    if (output) {
-      setResult(output);
-    } else {
-      setResult(msg_no_result);
+
+    setMsg("Loading...");
+    setCards([]);
+
+    const property_id = await getPropertyID(address);
+    if (!property_id) {
+      setMsg("Unable to find propery id");
+      return;
     }
+
+    const cards = await getPropertyDetails(property_id);
+    if (cards.length <= 0) {
+      setMsg("No results");
+      return;
+    }
+    console.log(cards);
+    setCards(cards);
+    setMsg("");
   }
 
   const onKeyDown = (e) => {
@@ -46,7 +58,7 @@ function App() {
 
   const submit = (e) => {
     if (address.length <= 0) {
-      setResult("Please enter address");
+      setMsg("Please enter address");
       return;
     }
     // console.log(address);
@@ -62,6 +74,8 @@ function App() {
 
   return (
     <>
+      <h4 className="title">Homes API extension</h4>
+
       <input
         type="text"
         name="address"
@@ -73,7 +87,14 @@ function App() {
       <button onClick={submit}>
         <SearchIcon width="16px" height="16px" />
       </button>
-      <div className="output">{result}</div>
+
+      {msg && <p>{msg}</p>}
+
+      {cards.length > 0 ? (
+        cards.map((card, i) => <CardItem card={card} />)
+      ) : (
+        <p>No results</p>
+      )}
     </>
   );
 }

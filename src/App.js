@@ -93,7 +93,10 @@ function App() {
       {cards.length > 0 ? (
         cards.map((card, i) => <CardItem key={i} card={card} />)
       ) : (
-        <p>No results</p>
+        <>
+          <p>No results</p>
+          <a href="http://homes.co.nz/" target="_new">Go Homes.co.nz</a>
+        </>
       )}
     </>
   );

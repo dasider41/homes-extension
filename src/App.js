@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getPropertyID, getPropertyDetails } from "./Api";
+import "./App.css";
 
 function App() {
   const msg_no_result = "No result";
@@ -29,7 +30,8 @@ function App() {
   };
 
   const submit = (e) => {
-    if (address.length < 0) {
+    if (address.length <= 0) {
+      setResult("Please enter address");
       return;
     }
     // console.log(address);

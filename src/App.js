@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/*global chrome*/
+import React, { useEffect, useState } from "react";
 import { getPropertyID, getPropertyDetails } from "./Api";
 import "./App.css";
 import { ReactComponent as SearchIcon } from "./search.svg";
@@ -7,6 +8,18 @@ function App() {
   const msg_no_result = "No result";
   const [address, setAddress] = useState("");
   const [result, setResult] = useState(msg_no_result);
+
+  useEffect(() => {
+    chrome.tabs.executeScript(
+      {
+        code: "window.getSelection().toString();",
+      },
+      (selection) => {
+        setAddress(selection[0]);
+        callAPI(address);
+      }
+    );
+  }, []);
 
   async function callAPI(address) {
     setResult("Loading...");

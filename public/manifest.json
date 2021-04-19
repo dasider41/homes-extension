@@ -13,5 +13,5 @@
     "48": "favicon.png",
     "128": "favicon.png"
   },
-  "permissions": ["<all_urls>", "http://*/*", "https://*/*", "tabs"]
+  "permissions": ["<all_urls>", "http://*/*", "https://*/*", "tabs", "activeTab"]
 }

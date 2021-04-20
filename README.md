@@ -31,3 +31,7 @@ or
 
 - If you setup a shortcuts for the extension, easy to use.
   (https://obie.ai/blog/how-to-add-and-remove-custom-keyboard-shortcuts-and-hotkeys-for-a-chrome-extension-in-5-seconds-flat/)
+
+## Todo
+
+[ ] Add address autocomplete

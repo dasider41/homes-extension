@@ -1,6 +1,6 @@
 # Homes API chrome extension
 
-Homes API chrome extension is an unoffical chrome extension with homes API.
+Homes API chrome extension is an unofficial chrome extension with homes(http://homes.co.nz/) API .
 
 ## Build
 
